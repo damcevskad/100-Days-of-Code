@@ -29,28 +29,33 @@ if path.lower() == "left":
     print("You have chosen left.")
     print("You are the sea. You need to arrive at the shore.")
     sea = input("Choose your path: Wait for the boat to arrive or swim to shore. (boat / swim)\n")
-    if sea == "boat":
+    if sea.lower() == "boat":
         print("You have chosen to wait for the boat.")
         print("You just arrived to shore.")
         chests = input("In front of you are three treasure chests. Red, blue and yellow. Choose carefully. (red / "
-                       "green / yellow)\nle"
-                       "le")
-        if chests == "red":
+                       "green / yellow)\n")
+        if chests.lower() == "red":
             print("You have chosen the red chest.")
             print("You were blown up by the TNT. Game over.")
             print("*********************************************")
-        elif chests == "green":
+        elif chests.lower() == "green":
             print("You have chosen the green chest.")
             print("You were attacked by snakes. Game over.")
             print("*********************************************")
-        else:
+        elif chests.lower() == "yellow":
             print("You have chosen the yellow chest.")
             print("*********************************************")
             print("Congratulations! You have found the treasure!")
             print("*********************************************")
-    else:
+        else:
+            print("Invalid input. Game over.")
+            print("*********************************************")
+    elif sea.lower() == "swim":
         print("You have chosen to swim to shore.")
         print("You were eaten by a shark. Game over.")
+        print("*********************************************")
+    else:
+        print("Invalid input. Game over.")
         print("*********************************************")
 
 elif path.lower() == "right":
@@ -61,3 +66,5 @@ elif path.lower() == "right":
 else:
     print("Invalid input. Game over.")
     print("*********************************************")
+
+
