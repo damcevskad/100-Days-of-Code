@@ -1,3 +1,4 @@
+#Day 9
 import ascii_art
 print(ascii_art.logo)
 print("Welcome to the Secret Auction\n")
@@ -23,3 +24,19 @@ for key in bidders:
         winner = key
 
 print(f"\nThe winner is {winner} with a bid of ${max_bid}!")
+
+#ascii_art.py
+
+logo = '''
+                         ___________
+                         \         /
+                          )_______(
+                          |"""""""|_.-._,.---------.,_.-._
+                          |       | | |               | | ''-.
+                          |       |_| |_             _| |_..-'
+                          |_______| '-' `'---------'` '-'
+                          )"""""""(
+                         /_________\\
+                       .-------------.
+                      /_______________\\
+'''
