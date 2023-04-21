@@ -28,14 +28,18 @@ def winner(score1, score2, ending_scores):
         print("You hit the road Jack!")
     elif score2 == 21:
         print("Computer hit the road Jack!")
+    elif score1 > 21 and score1 == min(ending_scores):
+        print("You win!")
+    elif score2 > 21 and score2 == min(ending_scores):
+        print("Computer wins!")
+    elif not score1 > 21 and max(ending_scores) == score1:
+        print("You win!")
+    elif not score2 > 21 and max(ending_scores) == score2:
+        print("Computer wins!")
     elif score1 > 21:
         print("Computer wins!")
     elif score2 > 21:
         print("You win!")
-    elif max(ending_scores) == score1 and not score1 > 21:
-        print("You win!")
-    elif max(ending_scores) == score2 and not score2 > 21:
-        print("Computer wins!")
 
 
 def hit_winner(score1, score2):
@@ -44,22 +48,21 @@ def hit_winner(score1, score2):
         print("Computer wins!")
     elif score2 > 21:
         print("You win!")
-    elif score1 == 21:
-        if score1 == score2:
-            print("Draw!")
-        print("You hit the road Jack!")
     elif score2 == 21:
-        if score1 == score2:
-            print("Draw!")
         print("Computer hit the road Jack!")
+    elif score1 == 21:
+        print("You hit the road Jack!")
+    elif score1 == score2:
+        print("Draw!")
 
 
-def immediate_win(score1, score2):
-    final_hand()
+def blackjack(score1, score2):
     if score1 == 21:
+        final_hand()
         print("You hit the road Jack!")
     elif score2 == 21:
-        print("Computer hits the road Jack!")
+        final_hand()
+        print("Computer hit the road Jack!")
 
 
 while True:
@@ -79,7 +82,7 @@ while True:
     is_winner = False
 
     first_hand()
-    immediate_win(your_score, computer_score)
+    blackjack(your_score, computer_score)
     if your_score >= 21 or computer_score >= 21:
         is_winner = True
 
@@ -92,6 +95,20 @@ while True:
             your_cards.append(your_new_card)
             your_score += your_new_card
 
+            computer_new_card = random.choice(cards)
+            computer_cards.append(computer_new_card)
+            computer_score += computer_new_card
+
+            if your_score > 21 and 11 in your_cards:
+                your_cards.remove(11)
+                your_cards.append(1)
+                your_score -= 10
+
+            if computer_score > 21 and 11 in computer_cards:
+                computer_cards.remove(11)
+                computer_cards.append(1)
+                computer_score -= 10
+
             first_hand()
             if your_score >= 21 or computer_score >= 21:
                 is_winner = True
@@ -101,6 +118,11 @@ while True:
             hit_or_stand = input("\nHit or Stand? ").lower()
 
         else:
+            if computer_score <= 16:
+                computer_new_card = random.choice(cards)
+                computer_cards.append(computer_new_card)
+                computer_score += computer_new_card
+
             final_scores = [your_score, computer_score]
             winner(your_score, computer_score, final_scores)
             is_winner = True
@@ -113,21 +135,3 @@ while True:
     elif not play_again == "yes":
         print("Invalid input.")
         break
-        
-        
-# ascii_art.py
-
-logo = """
-.------.            _     _            _    _            _    
-|A_  _ |.          | |   | |          | |  (_)          | |   
-|( \/ ).-----.     | |__ | | __ _  ___| | ___  __ _  ___| | __
-| \  /|K /\  |     | '_ \| |/ _` |/ __| |/ / |/ _` |/ __| |/ /
-|  \/ | /  \ |     | |_) | | (_| | (__|   <| | (_| | (__|   < 
-`-----| \  / |     |_.__/|_|\__,_|\___|_|\_\ |\__,_|\___|_|\_\\
-      |  \/ K|                            _/ |                
-      `------'                           |__/           
-"""
-
-
-
-
